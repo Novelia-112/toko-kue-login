@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Beranda{% endblock %}
+{% block content %}
+<h1 class="heading">Halo, {{ username }}!</h1>
+<p class="lead">Kamu berhasil masuk ke {{ shop_name }}. Selamat memilih kue favoritmu.</p>
+
+<form method="post" action="{{ url_for('logout') }}">
+  <button class="btn ghost" type="submit">Keluar</button>
+</form>
+{% endblock %}

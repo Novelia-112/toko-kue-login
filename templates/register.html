@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import password_field %}
+{% block title %}Buat akun{% endblock %}
+{% block content %}
+<h1 class="heading">Buat akun</h1>
+<p class="lead">Daftar dulu untuk memesan kue favoritmu.</p>
+
+<form method="post">
+  <div class="field">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" value="{{ username }}"
+           autocomplete="username" required minlength="3" maxlength="50"
+           pattern="[A-Za-z0-9_]+" aria-describedby="username-hint">
+    <p class="hint" id="username-hint">3-50 karakter: huruf, angka, atau garis bawah.</p>
+  </div>
+
+    {{ password_field("new-password", 4) }}
+
+
+  <button class="btn" type="submit">Buat akun</button>
+</form>
+
+<p class="switch">Sudah punya akun? <a href="{{ url_for('login') }}">Masuk</a></p>
+{% endblock %}

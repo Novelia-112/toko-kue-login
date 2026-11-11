@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Masuk{% endblock %} - {{ shop_name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght,SOFT@9..144,500..700,0..100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="awning" aria-hidden="true"></div>
+  <div class="awning-edge" aria-hidden="true"></div>
+
+  <div class="page">
+    <section class="intro">
+      <div class="cake-stage">
+        <img class="cake" src="{{ url_for('static', filename='cake.svg') }}" alt="">
+      </div>
+      <p class="shop">{{ shop_name }}</p>
+      <p class="tagline">Kue rumahan yang dibuat dengan sayang, dari dapur kami ke mejamu.</p>
+    </section>
+
+    <main class="card">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <p class="flash {{ category }}" role="{{ 'alert' if category == 'error' else 'status' }}">{{ message }}</p>
+        {% endfor %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+    <script>
+    document.querySelectorAll(".pw-toggle").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var input = document.getElementById(btn.dataset.target);
+        var show = input.type === "password";
+        input.type = show ? "text" : "password";
+        btn.setAttribute("aria-pressed", show ? "true" : "false");
+        btn.setAttribute("aria-label", show ? "Sembunyikan password" : "Tampilkan password");
+      });
+    });
+  </script>
+</body>
+</html>

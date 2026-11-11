@@ -1,0 +1,220 @@
+:root {
+  --susu: #FFF4F1;
+  --krim: #FFFBF8;
+  --stroberi: #F4A6BD;
+  --stroberi-muda: #F9D3DE;
+  --garis: #F0C4D2;
+  --frambos: #B8235A;
+  --frambos-gelap: #951C49;
+  --pistachio: #E3F3E8;
+  --pistachio-tua: #1F5A36;
+  --kakao: #4A2C32;
+  --kakao-lembut: #7A5A61;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--susu);
+  color: var(--kakao);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* Kanopi toko: pita bergaris dengan tepi bergelombang */
+.awning {
+  height: 20px;
+  background: repeating-linear-gradient(90deg, var(--stroberi) 0 48px, #fff 48px 96px);
+}
+.awning-edge {
+  height: 26px;
+  background: repeating-linear-gradient(90deg, var(--stroberi) 0 48px, #fff 48px 96px);
+  -webkit-mask: radial-gradient(circle at 24px 0, #000 23.5px, transparent 24px) 0 0 / 48px 100% repeat-x;
+          mask: radial-gradient(circle at 24px 0, #000 23.5px, transparent 24px) 0 0 / 48px 100% repeat-x;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 440px);
+  gap: 3rem;
+  align-items: center;
+  min-height: calc(100vh - 46px);
+}
+
+/* Bagian kiri: ilustrasi dan nama toko */
+.cake-stage {
+  width: min(100%, 360px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--stroberi-muda);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.5rem;
+}
+.cake {
+  width: 86%;
+  height: auto;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  50% { transform: translateY(-8px); }
+}
+
+.shop {
+  margin: 0 0 .5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variation-settings: "SOFT" 100;
+  color: var(--frambos);
+}
+.tagline {
+  margin: 0;
+  max-width: 30ch;
+  font-size: 1.125rem;
+  color: var(--kakao-lembut);
+}
+
+/* Bagian kanan: kartu formulir */
+.card {
+  background: #fff;
+  border: 2px solid var(--stroberi-muda);
+  border-radius: 28px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 24px 48px -28px rgba(184, 35, 90, .45);
+}
+.heading {
+  margin: 0 0 .25rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.15;
+  font-variation-settings: "SOFT" 100;
+}
+.lead {
+  margin: 0 0 1.5rem;
+  color: var(--kakao-lembut);
+}
+
+.field { margin-bottom: 1.1rem; }
+.field:last-of-type { margin-bottom: 1.5rem; }
+.field label {
+  display: block;
+  margin-bottom: .35rem;
+  font-weight: 600;
+}
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: .8rem 1rem;
+  border: 2px solid var(--garis);
+  border-radius: 14px;
+  background: var(--krim);
+  color: var(--kakao);
+  font: inherit;
+}
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible {
+  outline: 3px solid rgba(184, 35, 90, .25);
+  border-color: var(--frambos);
+}
+.hint {
+  margin: .3rem 0 0;
+  font-size: .875rem;
+  color: var(--kakao-lembut);
+}
+
+/* Tombol ikon mata pada kolom password */
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 3.25rem; }
+.pw-toggle {
+  position: absolute;
+  top: 50%;
+  right: .5rem;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--kakao-lembut);
+  cursor: pointer;
+}
+.pw-toggle:hover { background: #FFF0F5; color: var(--frambos); }
+.pw-toggle:focus-visible {
+  outline: 3px solid rgba(184, 35, 90, .35);
+  outline-offset: 1px;
+}
+.pw-toggle .icon-eye { display: none; }
+.pw-toggle[aria-pressed="true"] .icon-eye { display: block; }
+.pw-toggle[aria-pressed="true"] .icon-eye-off { display: none; }
+/* Tombol */
+.btn {
+  width: 100%;
+  padding: .95rem 1.25rem;
+  border: 2px solid var(--frambos);
+  border-radius: 999px;
+  background: var(--frambos);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color .15s;
+}
+.btn:hover { background: var(--frambos-gelap); }
+.btn:focus-visible {
+  outline: 3px solid rgba(184, 35, 90, .4);
+  outline-offset: 3px;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--frambos);
+}
+.btn.ghost:hover { background: #FFF0F5; }
+
+.switch {
+  margin: 1.25rem 0 0;
+  text-align: center;
+  color: var(--kakao-lembut);
+}
+.switch a { color: var(--frambos); font-weight: 600; }
+
+/* Pesan */
+.flash {
+  margin: 0 0 1.25rem;
+  padding: .75rem 1rem;
+  border-radius: 14px;
+  font-weight: 600;
+}
+.flash.error { background: #FFE8EC; color: #8A1538; }
+.flash.success { background: var(--pistachio); color: var(--pistachio-tua); }
+
+@media (max-width: 860px) {
+  .page {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    min-height: 0;
+  }
+  .intro { text-align: center; }
+  .cake-stage { width: min(60%, 220px); margin: 0 auto 1rem; }
+  .tagline { margin: 0 auto; }
+  .card { padding: 1.75rem 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cake { animation: none; }
+  .btn { transition: none; }
+}

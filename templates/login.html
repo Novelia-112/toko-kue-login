@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_macros.html" import password_field %}
+{% block title %}Masuk{% endblock %}
+{% block content %}
+<h1 class="heading">Selamat datang kembali</h1>
+<p class="lead">Masuk untuk melihat pesananmu.</p>
+
+<form method="post">
+  <div class="field">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" value="{{ username }}"
+           autocomplete="username" required maxlength="50">
+  </div>
+
+    {{ password_field("current-password") }}
+
+
+  <button class="btn" type="submit">Masuk</button>
+</form>
+
+<p class="switch">Belum punya akun? <a href="{{ url_for('register') }}">Buat akun</a></p>
+{% endblock %}
